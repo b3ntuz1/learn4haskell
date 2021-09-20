@@ -491,7 +491,7 @@ Implement a function that returns the last digit of a given number.
   whether it works for you!
 -}
 lastDigit :: Int -> Int
-lastDigit n = mod n 10
+lastDigit n = mod (abs n) 10
 
 
 {- |
@@ -564,15 +564,6 @@ mid x y z
   | x > y = x
   | otherwise = y
 
-{-
-python implementation
-
-def mid(x, y, z):
-  return sorted([x, y, z])[1]
-
--}
-
-
 {- |
 =⚔️= Task 8
 
@@ -586,7 +577,6 @@ True
 False
 -}
 
--- 'y' is vowel?
 isVowel :: Char -> Bool
 isVowel c
   | c == 'e' = True
@@ -594,17 +584,8 @@ isVowel c
   | c == 'i' = True
   | c == 'o' = True
   | c == 'a' = True
+  | c == 'y' = True
   | otherwise = False
-
-{-
-python3
-
-def isVowel(c):
-  if c in 'euioa':
-    return True
-  return False
-
--}
 
 
 {- |
@@ -668,9 +649,9 @@ Try to introduce variables in this task (either with let-in or where) to avoid
 specifying complex expressions.
 -}
 sumLast2 :: Int -> Int
-sumLast2 n = firstNum n + mod n 10
+sumLast2 n = firstNum (abs n) + mod (abs n) 10
   where
-    firstNum num = div (mod num 100) 10;
+    firstNum n = mod (div n 10) 10;
 
 
 
@@ -694,8 +675,8 @@ aren't ready for this boss yet!
 
 firstDigit :: Int -> Int
 firstDigit n
-  | n < 10 = n
-  | otherwise = firstDigit (div n 10)
+  | abs n < 10 = abs n
+  | otherwise = firstDigit (div (abs n) 10)
 
 
 {-
